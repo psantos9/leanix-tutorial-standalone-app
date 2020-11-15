@@ -1,5 +1,5 @@
 # Creating a standalone cross-platform client app for LeanIX
-LeanIX Pathfinder is a very versatile tool when it comes to explore, analyse and manage your workspace data. However, and in very specific situations, the user may come up with a set of requirements that call out for custom development, either in the form of a Custom Report, or a project of some sort that interfaces with any of the available LeanIX [APIs](https://dev.leanix.net/docs/available-apis).
+LeanIX Pathfinder is a very versatile tool when it comes to explore, analyze and manage your workspace data. However, and in very specific situations, the user may come up with a set of requirements that call out for custom development, either in the form of a Custom Report, or a project of some sort that interfaces with any of the available LeanIX [APIs](https://dev.leanix.net/docs/available-apis).
 
 In this tutorial, we'll guide you on how to build a simple cross-platform desktop app, based on [Vue](https://vuejs.org/) and [Electron](https://www.electronjs.org/), that allows the user to securely access the LeanIX Pathfinder [GraphQL API](https://www.electronjs.org/) using the [GraphiQL](https://github.com/graphql/graphiql) library.
 <div  style="display:flex; justify-content:center">
@@ -27,7 +27,7 @@ Once installed, create a new project as follows:
 ```bash
 vue create leanix-tutorial-standalone-app
 ```
-During the project creation, you will be prompted to pick a preset. You can simply choose the default preset which comes with a basic Babel + ESLint setup. Once all dependencies are installed, open the project folder  with your favourite code editor and  launch an instance of your development server by running the following command:
+During the project creation, you will be prompted to pick a preset. You can simply choose the default preset which comes with a basic Babel + ESLint setup. Once all dependencies are installed, open the project folder  with your favorite code editor and  launch an instance of your development server by running the following command:
 
 ```bash
 cd leanix-tutorial-standalone-app
@@ -99,9 +99,9 @@ We'll build our application around two main views:
 1. A form in which the user inputs the authentication credentials (leanix instance and api token)
 2. The graphiql user interface
 
-The first view will consist of a login form with two input fields. The first input is used to specify the LeanIX instance in which his workspace resides. The second input is used to set the API key to be used for fetching an access token. Additionally a submit button and a field for displaying eventual authentication errors will be included as well. The submit button is disabled untill both the instance and api key inputs are filled. Once the user clicks on the submit button, the application will query the LeanIX authentication endpoint in order to fetch an access token. If a valid instance/api token combination is submitted to the server, then the user receives an access token which can be used to query the LeanIX GraphQL API. On the other hand, if the user submits an invalid combination, then a 403 Unathorized error is displayed to the user.
+The first view will consist of a login form with two input fields. The first input is used to specify the LeanIX instance in which his workspace resides. The second input is used to set the API key to be used for fetching an access token. Additionally, a submit button and a field for displaying eventual authentication errors will be included as well. The submit button is disabled until both the instance and api key inputs are filled. Once the user clicks on the submit button, the application will query the LeanIX authentication endpoint in order to fetch an access token. If a valid instance/api token combination is submitted to the server, then the user receives an access token which can be used to query the LeanIX GraphQL API. On the other hand, if the user submits an invalid combination, then a 403 Unauthorized error is displayed to the user.
 
-Once a valid access token is received by the application, the view switches to the standard [GraphiQL](https://github.com/graphql/graphiql) user interface, which can be used to query the LeanIX GraphQL API. Since we are implementing a log in/log out workflow for authenticating the application, we'll make a small customization to the GraphiQL user interface for adding a log out button.
+Once a valid access token is received by the application, the view switches to the standard [GraphiQL](https://github.com/graphql/graphiql) user interface, which can be used to query the LeanIX GraphQL API. Since we are implementing the log in/log out workflow for authenticating the application, we'll make a small customization to the GraphiQL user interface for adding a logout button.
 
 ### Implementing the application authentication form (view 1)
 
@@ -248,7 +248,7 @@ export default {
   }
 </style>
 ```
-Once we have our *AuthenticationForm* component set, we'll integrate it into our app by setting  the *src/App.vue* file as follows:
+Once we have our *AuthenticationForm* component set, we'll integrate it into our app by setting the *src/App.vue* file as follows:
 ```html
 <template>
   <div id="app">
@@ -297,7 +297,7 @@ You should see the AuthenticationForm popping up in your desktop!
   <img src="https://i.imgur.com/baakZ44.png">
 </div>
 
-In order to proceed you'll need to have a valid [LeanIX API Token](https://docs.leanix.net/docs/create-and-manage-your-own-api-tokens). Once you have it, fill in the **instance** and **API token** fields of your input form and click on the **Submit** button. You should get the following [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) error marked in red:
+Before proceeding, you will need a valid [LeanIX API Token](https://docs.leanix.net/docs/create-and-manage-your-own-api-tokens). Once you have it, fill in the **instance** and **API token** fields of your input form and click on the **Submit** button. You should get the following [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) error marked in red:
 
 <div style="display:flex; justify-content:center">
   <img src="https://i.imgur.com/ekXK7yX.png">
@@ -467,4 +467,4 @@ yarn electron:build
 By default, this command will bundle the application into a single executable file and place it into the *dist* folder in your project.
 The [vue-cli-plugin-electron-builder](https://nklayman.github.io/vue-cli-plugin-electron-builder/) that is included in this project uses the [electron-builder](https://www.electron.build/) library. You require additional information about building executables for other architectures than the one you are using on your development machine, please refer to the electron build [documentation](https://www.electron.build/cli).
 
-And that's it, you now have a distribuatle stand-alone client app that can interface with LeanIX GraphQL API. Congratulations for finishing this tutorial!
+And that's it, you now have a distributable stand-alone client app that can interface with LeanIX GraphQL API. Congratulations on finishing this tutorial!
